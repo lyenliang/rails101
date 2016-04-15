@@ -34,6 +34,7 @@ class GroupsController < ApplicationController
   # 顯示討論版版名跟簡介
   def show
     @group = Group.find(params[:id])
+    @posts = @group.posts
   end
 
   # 裡面會有表單呈現現有資料來，填完資料後可以送出
