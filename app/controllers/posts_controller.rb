@@ -4,10 +4,14 @@ class PostsController < ApplicationController
 
   before_action :find_group
 
+  before_action :member_required, only: [:new, :create]
+
   def new
     @post = @group.posts.new
   end
 
+  # current_user is defined in "Devise" gem
+  # see http://stackoverflow.com/questions/12719958/rails-where-does-the-infamous-current-user-come-from
   def edit
     @post = current_user.posts.find(params[:id])
   end
@@ -48,5 +52,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:content)
+  end
+
+  def member_required
+    if !current_user.is_member_of?(@group)
+      flash[:warning] = "你不是這個討論版的成員，不能發文喔！"
+      redirect_to group_path(@group)
+    end
   end
 end
