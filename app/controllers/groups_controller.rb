@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
 
   # new 送出來的表單到 create 這個 action，新增一筆資料
   def create
-    @group = current_user.groups.create(group_params)
+    @group = current_user.groups.new(group_params)
     
     if @group.save
       redirect_to groups_path
