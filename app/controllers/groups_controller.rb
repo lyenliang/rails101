@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
 
   # new 送出來的表單到 create 這個 action，新增一筆資料
   def create
-    @group = Group.create(group_params)
+    @group = current_user.groups.create(group_params)
     
     if @group.save
       redirect_to groups_path
@@ -25,7 +25,7 @@ class GroupsController < ApplicationController
 
   # edit 送出來的表單可以到 update 這個 action，更新該筆資料
   def update
-    @group = Group.find(params[:id])
+    @group = current_user.groups.find(params[:id])
 
     if @group.update(group_params)
       redirect_to groups_path, notice: "修改討論版成功"
@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
 
   # 送出刪除請求，刪除該筆資料
   def destroy
-    @group = Group.find(params[:id])
+    @group = current_user.groups.find(params[:id])
     @group.destroy
     redirect_to groups_path, alert: "討論版已刪除"
   end
