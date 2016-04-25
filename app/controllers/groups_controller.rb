@@ -1,4 +1,7 @@
 class GroupsController < ApplicationController
+
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+
   # 列出所有的討論版，可以選擇各個單版
   def index
     @groups = Group.all
