@@ -1,5 +1,7 @@
 == README
 
+This is a practice of [Rails 101](http://courses.growthschool.com/courses/rails-101).
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
