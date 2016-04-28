@@ -20,6 +20,8 @@ class PostsController < ApplicationController
     @post = @group.posts.build(post_params)
     @post.author = current_user
 
+    # save method:
+    # http://api.rubyonrails.org/classes/ActiveRecord/Persistence.html#method-i-save
     if @post.save
       redirect_to group_path(@group), notice: "新增文章成功！"
     else
